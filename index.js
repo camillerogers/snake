@@ -14,16 +14,16 @@ function initGame() {
     switch (event.which) {
       case 87: // w
         snake[0].dir = "u";
-        return;
+        break;
       case 65: // a
         snake[0].dir = "l";
-        return;
+        break;
       case 83: // s
         snake[0].dir = "d";
-        return;
+        break;
       case 68: //d
         snake[0].dir = "r";
-        return;
+        break;
     }
   });
   animationLoop();
@@ -85,18 +85,88 @@ function drawSprite(x, y, color = "black") {
 }
 
 function drawFood() {
+  drawSprite(food.x, food.y);
   // TODO Camille's Challenge (easy)
   // draw the food sprite on the canvas
 }
 
 function appendSnake() {
+  var tail = snake[snake.length-1];
+  var sprite = {
+    x: tail.x,
+    y: tail.y,
+    dir: tail.dir
+  }
+  switch (sprite.dir) {
+    case 'u':
+      sprite.y += SPRITE_SIZE;
+      // todo
+      break;
+    case 'l':
+      sprite.x += SPRITE_SIZE;
+      // todo
+      break;
+    case 'd':
+      sprite.y -= SPRITE_SIZE;
+      // todo
+      break;
+    case 'r':
+      sprite.x -= SPRITE_SIZE;
+       // todo
+      break;
+  }
+  if (sprite.x < 0) {
+    sprite.x = CANVAS_SIZE - SPRITE_SIZE;
+  }
+  if (sprite.y < 0) {
+    sprite.y = CANVAS_SIZE - SPRITE_SIZE;
+  }
+  sprite.x %= CANVAS_SIZE;
+  sprite.y %= CANVAS_SIZE;
+  snake.push(sprite);
   // TODO Camille's Challenge (medium)
   // append a sprite to the snake's data structure
 }
 
 function drawSnake() {
+    for(let i = snake.length-1; i >= 0; i--) {
+      switch (snake[i].dir) {
+        case 'u':
+          snake[i].y -= SPRITE_SIZE;
+          // todo
+          break;
+        case 'l':
+          snake[i].x -= SPRITE_SIZE;
+          // todo
+          break;
+        case 'd':
+         snake[i].y += SPRITE_SIZE;
+          // todo
+          break;
+        case 'r':
+          snake[i].x += SPRITE_SIZE;
+           // todo
+          break;
+      }
+      if (snake[i].x < 0) {
+        snake[i].x = CANVAS_SIZE - SPRITE_SIZE;
+      }
+      if (snake[i].y < 0) {
+        snake[i].y = CANVAS_SIZE - SPRITE_SIZE;
+      }
+      snake[i].x %= CANVAS_SIZE;
+      snake[i].y %= CANVAS_SIZE;
+      drawSprite(snake[i].x, snake[i].y, "blue");
+      ctx.fillStyle = "white";
+      ctx.font = '48px serif';
+      ctx.fillText(i, snake[i].x + SPRITE_SIZE/4, snake[i].y + SPRITE_SIZE/1.25, SPRITE_SIZE);
+      if (i > 0) {
+        snake[i].dir = snake[i-1].dir;
+      }
+  }
+
   // TODO Camille's Challenge (hard)
   // given the snakes data structure
   // 1) draw the snake-sprites on the canvas, and
-  // 2) update the sprite pointers for the next draw
+  // 2) update the sprite directions for the next draw
 }
