@@ -2,15 +2,18 @@
 <html>
  <head>
    <meta charset="UTF-8">
-   <title>Camillie's Snake Game</title>
+   <title>Snake Game</title>
    <link rel="stylesheet" href="./index.css">
  </head>
  <body>
    <p>
-     <h2>Camillie's Snake Game</h2>
+     <h2>Snake Game</h2>
      <a class="github-button" href="https://github.com/camillerogers" data-size="large" aria-label="Follow camillerogers on GitHub">Follow</a>
      <a class="github-button" href="https://github.com/camillerogers/snake/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork camillerogers/snake on GitHub">Fork</a>
      <a class="github-button" href="https://github.com/camillerogers/snake" data-icon="octicon-star" data-size="large" aria-label="Star camillerogers/snake on GitHub">Star</a>
+   </p>
+   <p>
+     Best Score: <span id="score">0</span>
    </p>
      <canvas id="canvas">Canvas Element Unsupported.</canvas>
    <p>
@@ -18,8 +21,8 @@
      <span class="key" id="a">A</span>
      <span class="key" id="s">S</span>
      <span class="key" id="d">D</span>
+    <button type="button" id="reset">New Game</button>
    </p>
-
     <script type="text/javascript">
     document.onreadystatechange = function() {
   if (document.readyState === "complete") {
