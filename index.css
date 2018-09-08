@@ -9,6 +9,7 @@ canvas {
   padding: 20px;
   border: 1px solid black;
 }
+
 .key-selected {
   background-color: grey;
   color: white;
